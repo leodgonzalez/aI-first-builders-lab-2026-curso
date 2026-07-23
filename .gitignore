@@ -1,0 +1,10 @@
+# Config local de Claude Code (permisos por máquina)
+.claude/settings.local.json
+
+# Cachés de Python (tools con uv)
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store
+Thumbs.db
