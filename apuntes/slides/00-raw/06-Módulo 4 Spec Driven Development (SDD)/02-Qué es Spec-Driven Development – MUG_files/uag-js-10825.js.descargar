@@ -1,0 +1,4 @@
+document.addEventListener("DOMContentLoaded", function(){ window.addEventListener("DOMContentLoaded", function(){
+	UAGBForms.init( {"block_id":"b20c670d","reCaptchaEnable":false,"reCaptchaType":"v2","reCaptchaSiteKeyV2":"","reCaptchaSiteKeyV3":"","afterSubmitToEmail":"leog@live.com.ar","afterSubmitCcEmail":"","afterSubmitBccEmail":"","afterSubmitEmailSubject":"Env\u00edo del formulario","sendAfterSubmitEmail":true,"confirmationType":"message","hidereCaptchaBatch":false,"captchaMessage":"Por favor, completa el captcha de arriba.","confirmationUrl":""}, '.uagb-block-b20c670d', 10825 );
+});
+ });
