@@ -1,0 +1,95 @@
+/* General Form Styles */
+.dilux-user-management-form {
+    max-width: 500px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%; /* Asegura que el formulario ocupe todo el ancho disponible */
+}
+
+
+/* Contenedor para centrar el formulario */
+.dilux-password-change-form-container {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+}
+
+.dilux-user-management-form p {
+    margin: 0 0 15px;
+}
+
+.dilux-user-management-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.dilux-user-management-form input[type="password"],
+.dilux-user-management-form input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.dilux-user-management-notice {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.dilux-user-management-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.dilux-user-management-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Sessions Table Styles */
+.dilux-user-management-sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: #fff;
+}
+
+.dilux-user-management-sessions-table th,
+.dilux-user-management-sessions-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.dilux-user-management-sessions-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.dilux-user-management-sessions-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Buttons */
+.dilux-user-management-close-session,
+#dilux-user-management-close-all {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px 0;
+    display: inline-block;
+}
+
+.dilux-user-management-close-session:hover,
+#dilux-user-management-close-all:hover {
+    background: #c82333;
+}
+
