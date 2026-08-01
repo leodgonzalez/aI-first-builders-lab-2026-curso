@@ -117,6 +117,12 @@ def limpiar(container, html_path: Path, assets_dir: Path, escribir: bool, titulo
                 shutil.copy2(origen, destino)
             im["src"] = f"assets/{origen.name}"
             imagenes.append(origen.name)
+        elif origen and (assets_dir / origen.name).exists():
+            # La carpeta <lección>_files se borró (pesa ~4 MB y es basura del
+            # navegador), pero la captura ya vive en assets/ de una corrida previa.
+            # Sin esto, un --force dejaría el link apuntando al _files inexistente.
+            im["src"] = f"assets/{origen.name}"
+            imagenes.append(origen.name)
     return imagenes
 
 

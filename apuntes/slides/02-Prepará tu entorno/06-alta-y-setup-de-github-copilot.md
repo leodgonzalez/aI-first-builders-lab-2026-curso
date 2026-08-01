@@ -43,21 +43,21 @@ La **primera vez** te va a pedir **autenticarte con tu cuenta de GitHub** (la qu
 /login
 ```
 
-![](./06-Alta y setup de GitHub Copilot – MUG_files/image-2-1024x589.png)
+![](assets/image-2-1024x589.png)
 
 Y deberás elegir la opción «github.com»:
 
-![](./06-Alta y setup de GitHub Copilot – MUG_files/image-3-1024x586.png)
+![](assets/image-3-1024x586.png)
 
 Y luego deberás seguir las instrucciones de la pantalla (ingresar a una URL y poner el código luego de autenticarte a GitHub):
 
-![](./06-Alta y setup de GitHub Copilot – MUG_files/image-4-1024x676.png)
+![](assets/image-4-1024x676.png)
 
 Autoriza el uso de GitHub en la pantalla de consentimiento.
 
 > 💡 SI ESTAS EN WSL: Puede que te aparezca alguna validación de seguridad (relacionada con store token) como la siguiente:
 
-![](./06-Alta y setup de GitHub Copilot – MUG_files/image-5-1024x590.png)
+![](assets/image-5-1024x590.png)
 
 Esto es porque en WSL GitHub Copilot no puede guardar de manera segura el token de acceso a GitHub. Si preferís priorizar la seguridad y no alojar tu token de GitHub en texto plano, deberás hacer esta autorización (ingresar el código) cada vez que quieras usar Copilot. Si eso para vos no es un problema, podrás seleccionar la opción 1 hasta que termine el curso (GitHub Copilot no te volverá a pedir iniciar sesión en GitHub usando WSL).
 

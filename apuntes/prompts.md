@@ -85,3 +85,11 @@ pasala por el template y el checklist de calidad completos del curso, auditá pu
 por punto, y preguntame todo lo que necesites antes de inventar o cambiar nada.
 NO modifiques el PRD.md original.
 ```
+
+```md
+/speckit-constitution Reservas de espacios comunes de un edificio. Principios: (1) TDD estricto: test antes que implementación, ciclo rojo-verde-refactor. (2) Slices verticales por feature, de UI a datos; no está terminada hasta que se usa desde la UI. (3) Invariantes garantizadas por restricciones en la base de datos, no por la app: una reserva activa por espacio/turno/fecha, correo único por vecino, turnos activos de un espacio sin solaparse. (4) Sin borrado físico: solo baja lógica, y el histórico de ocupación y cobro se conserva siempre. (5) Cada respuesta expone solo lo que el rol necesita (un vecino ve ocupación ajena, nunca correo ni detalle) y la autorización se verifica en el backend, no escondiendo botones. Transversal: credenciales (conexión, SMTP, clave de firma) nunca versionadas en el código. Tratar de que la constitución sea lo mas agnostica a la tecnología posible.
+```
+
+```md
+/speckit-constitution Reservas de espacios comunes de un edificio. Escribí solo estos 5 principios, en prosa breve (3-5 líneas + racional cada uno), sin citar identificadores de requisitos del PRD (RF/RNF/AC) y sin agregar principios ni secciones que no estén acá. (1) TDD estricto: el test se escribe antes que la implementación, se lo ve fallar, y el ciclo es rojo-verde-refactor. (2) Slices verticales por feature, de la UI a los datos; una feature no está terminada hasta que se puede usar desde la UI. (3) Las invariantes del dominio las garantizan restricciones declarativas de la base de datos, no la aplicación ni la pantalla: una sola reserva activa por espacio/turno/fecha, correo único por vecino, turnos activos de un mismo espacio sin solaparse. (4) Sin borrado físico: todo es baja lógica, y el histórico de ocupación y de cobro se conserva siempre. (5) Mínima exposición: cada respuesta expone solo lo que el rol necesita (un vecino ve de los demás solo la ocupación, nunca el correo ni el detalle ajeno) y la autorización se verifica siempre en el backend, no escondiendo botones. Las credenciales (cadena de conexión, contraseña SMTP, clave de firma) nunca se versionan en el código.
+```

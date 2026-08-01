@@ -81,5 +81,5 @@ Dos cosas aprendidas a la mala, que conviene no repetir:
 - Los PRDs siguen el template del curso (RF/RNF/AC trazables por ID) — está la skill
   `create-prd`.
 - Cuando el usuario pide **un prompt** para llevarse a otro chat («haceme un prompt para…»),
-  está la skill `armar-prompt`: aplica el molde y las técnicas del curso y devuelve el texto
-  listo para copiar. Ojo con el reflejo de resolver el pedido: lo que quiere es el prompt.
+  lo que quiere es el texto listo para copiar, no que resuelvas vos el pedido. Ojo con ese
+  reflejo.

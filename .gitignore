@@ -5,6 +5,10 @@
 __pycache__/
 *.pyc
 
+# Basura del navegador al guardar una lección como "Página web, completa".
+# Las capturas reales ya las copia slides2md.py a <capítulo>/assets/.
+*_files/
+
 # Sistema
 .DS_Store
 Thumbs.db
