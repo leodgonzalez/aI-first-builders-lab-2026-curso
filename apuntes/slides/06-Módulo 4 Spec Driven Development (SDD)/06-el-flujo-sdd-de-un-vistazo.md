@@ -24,6 +24,39 @@ El flujo de Spec Kit es una secuencia, y cada comando deja un **artefacto** —u
 7. **`/speckit.analyze`** — chequea que **spec, plan y tareas sean consistentes** entre sí, antes de que se escriba una sola línea de código real.
 8. **`/speckit.implement`** — el agente **construye** siguiendo las tareas, en orden, validando contra lo que el spec prometió.
 
+> [!WARNING]
+> **Nota de corrección (agregada al apunte, no está en la lección original).**
+>
+> Las fases 1-3 y 5-8 coinciden con la herramienta. **La fase 4 va a contramano:**
+> `/speckit.checklist` es el único comando de validación que **exige `plan.md`**, así que
+> corriéndolo antes del plan aborta. Los scripts de Spec Kit `0.12.4.dev0`:
+>
+> | Comando | Lo que invoca | Qué implica |
+> |---|---|---|
+> | `clarify` | `check-prerequisites.sh --json --paths-only` | No valida nada → corre sin plan. Fase 3 ✅ |
+> | `checklist` | `check-prerequisites.sh --json` | Valida y **corta**: `ERROR: plan.md not found… Run /speckit-plan first` (`check-prerequisites.sh:127`) |
+> | `tasks` | `setup-tasks.sh` | Mismo corte si falta `plan.md` → tasks va después de plan ✅ |
+> | `analyze` | `check-prerequisites.sh --json --require-tasks --include-tasks` | Exige `tasks.md`. Fase 7 ✅ |
+> | `implement` | ídem `analyze` | Fase 8 ✅ |
+>
+> **El flujo tal como lo espera la herramienta:**
+>
+> `constitution` → `specify` → `clarify` → **`plan`** → **`checklist`** → `tasks` → `analyze` → `implement`
+>
+> El README de `github/spec-kit` lo respalda: marca `clarify` como *«recommended before
+> `/speckit.plan`»* y `analyze` como *«run after `/speckit.tasks`, before
+> `/speckit.implement`»*, pero a `checklist` no le asigna posición fija — su lugar lo fija
+> el script, que pide el plan.
+>
+> **Si querés seguir el orden de la lección** (validar el spec antes de planear, que
+> conceptualmente tiene sentido: el checklist son «tests unitarios del español» y no
+> necesita el stack), hay que forzarlo: correr el chequeo con `--paths-only` para saltear
+> la validación. Funciona, pero estás usando el comando fuera de su camino previsto.
+>
+> **Aparte:** las fases son ocho en la lección, pero la herramienta tiene un noveno comando
+> —`/speckit.converge`, después de `implement`— que el README describe como *«assess the
+> codebase against spec/plan/tasks and append remaining work»*.
+
 ## 🧍 Dónde entrás vos
 
 Acá está la clave que separa al SDD del «dale, construí todo»: **cada fase es un checkpoint tuyo.** El agente propone, vos revisás y aprobás antes de avanzar. No es que escribís un comando y volvés en una hora a ver qué salió: leés el spec antes de planear, leés el plan antes de generar tareas, leés las tareas antes de implementar. Dirigís en cada escalón, con la misma actitud crítica que ya practicaste en M2-M3 —la diferencia es que acá cada decisión queda anotada en un artefacto, no solo en tu cabeza—.
