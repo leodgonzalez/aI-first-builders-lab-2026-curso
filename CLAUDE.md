@@ -47,8 +47,7 @@ regla accionable → el cierre.
 | `calificaciones/` | Lo mismo en Markdown, **generado**: nota, devolución del instructor y preguntas erradas. |
 | `tools/slides2md.py` | Convierte las lecciones de HTML a Markdown. |
 | `tools/calificaciones2md.py` | Convierte las entregas y los quizzes de HTML a Markdown. |
-| `src/modulo-N/` | Los proyectos que se van construyendo en cada módulo. |
-| `resource-management/`, `seguimiento-tareas/` | PRDs y redacción de los proyectos propios. |
+| `src/modulo-N/` | Los proyectos que se van construyendo en cada módulo, con su PRD adentro. |
 
 Los capítulos van numerados (`01-`, `02-`, …) para que ordenen igual que el curso. Los
 nombres de capítulo replican los del curso, con acentos y todo; los archivos `.md` usan slug
