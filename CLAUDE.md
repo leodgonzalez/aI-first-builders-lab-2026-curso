@@ -43,7 +43,10 @@ regla accionable → el cierre.
 | `apuntes/slides/<capítulo>/` | Las mismas lecciones en Markdown, **generadas** por la tool. No se editan a mano: se regeneran. |
 | `apuntes/resumenes/<capítulo>/` | **Los resúmenes de estudio.** Escritos a mano, mismo nombre que la lección que resumen. Esto es lo que queda del curso: acá sí se edita. |
 | `apuntes/prompts.md` | Prompts del curso que vale la pena guardar. |
+| `calificaciones/00-raw/` | **Fuente inmutable.** Las entregas corregidas y los quizzes, guardados del navegador (`.html`). |
+| `calificaciones/` | Lo mismo en Markdown, **generado**: nota, devolución del instructor y preguntas erradas. |
 | `tools/slides2md.py` | Convierte las lecciones de HTML a Markdown. |
+| `tools/calificaciones2md.py` | Convierte las entregas y los quizzes de HTML a Markdown. |
 | `src/modulo-N/` | Los proyectos que se van construyendo en cada módulo. |
 | `resource-management/`, `seguimiento-tareas/` | PRDs y redacción de los proyectos propios. |
 
@@ -72,6 +75,51 @@ Dos cosas aprendidas a la mala, que conviene no repetir:
   viewport: se perdía el 87% del texto. Si aparece un `.pdf` en `00-raw/`, está truncado.
 - **La plataforma es WordPress + LifterLMS.** La lección entera vive en
   `div.llms-lesson-content`. Todo lo demás de la página es chrome.
+
+### Las calificaciones, igual
+
+Las **entregas** corregidas y los **quizzes** siguen el mismo criterio con
+`tools/calificaciones2md.py`: el `.html` se guarda en `calificaciones/00-raw/` y el `.md` sale
+al lado, en `calificaciones/`. Lo que importa acá es la **nota** — más la devolución del
+instructor en las entregas, y qué preguntas se erraron en los quizzes.
+
+**El nombre de la fuente no importa**: la tool deduce del propio HTML si es entrega o quiz, de
+qué módulo es y qué número de intento. Por eso `00-raw/` queda tal cual lo escupe el
+navegador, sin curar, y la salida sí es pareja:
+
+```
+calificaciones/m<N>-entrega-<titulo-slug>.md
+calificaciones/m<N>-quiz-intento-<K>.md      ← el intento va siempre, aunque haya uno solo
+```
+
+El intento siempre explícito es a propósito: el M3 se aprobó recién en el segundo, y el
+nombre no tiene que cambiar cuando aparece un intento nuevo. Si dos fuentes escriben el mismo
+`.md`, la tool avisa en vez de pisar en silencio.
+
+El frontmatter deja todo el contexto enlazado, y la tool lo resuelve solo — nada de esto se
+completa a mano:
+
+| Campo | Dónde | De dónde sale |
+|---|---|---|
+| `enunciado` | ambos | La lección de `apuntes/slides/` con la consigna, matcheada por slug del título. |
+| `repo` | entrega | La URL de GitHub que se entregó, sacada del texto de la entrega. |
+| `proyecto` | entrega | El código local, `../src/modulo-<N>` (hermano de `curso/`), si existe. |
+| `erradas` | quiz | Los números de las preguntas que se erraron, para no tener que releer el `.md`. |
+| `fecha`, `tiempo_segundos` | quiz | Normalizados desde el «Completado:» y «Tiempo total:» de la plataforma. |
+
+Si `repo` y el `origin` de `proyecto` no son el mismo repositorio, la tool avisa: o se
+entregó un repo que no es el que se trabajó, o el local quedó apuntando a otro lado.
+
+Tres cosas que ya mordieron acá:
+
+- **La lección y la entrega tienen el mismo título.** La de la entrega dice **Assignment** en
+  el `<title>` y trae `section.llms-assignment-content`; si falta, la tool avisa
+  `no es una calificación` — se guardó la página equivocada.
+- **Las preguntas de completar** (`type--blank`) no tienen la respuesta en la lista de
+  opciones sino embebida en la oración, dentro de `u.llms-aq-blank-answer`. Hay que tomar la
+  sección de respuesta entera, no los `<li>`.
+- **El donut del quiz dice «Fallar»** (mala traducción de LifterLMS). El resultado se lee de
+  las clases `passing`/`failing`, no del texto.
 
 ## Convenciones
 
